@@ -17,6 +17,10 @@ button {
   font-size: 1rem;
 }
 
+button{
+  cursor: pointer;
+}
+
 input, button{
    :focus,
   :focus-within {

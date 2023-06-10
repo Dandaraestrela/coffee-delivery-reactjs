@@ -10,7 +10,7 @@ export const Wrapper = styled(MainWrapper)`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 544px;
+  min-height: 544px;
 
   gap: 20px;
 
