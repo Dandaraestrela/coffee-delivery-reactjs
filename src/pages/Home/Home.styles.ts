@@ -12,6 +12,10 @@ export const BeveragesListWrapper = styled.div`
   column-gap: 32px;
   padding: 32px 10rem;
 
+  @media (max-width: 1340px) and (min-width: 801px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   @media (max-width: 800px) {
     display: flex;
     flex-wrap: wrap;
