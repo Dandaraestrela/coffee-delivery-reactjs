@@ -9,8 +9,8 @@ import { ReactNode, createContext, useReducer, useState } from "react";
 interface CartContextType {
   productsList: ProductType[];
   clearCart: () => void;
-  addBeverageToCart: (id: string) => void;
-  removeBeverageFromCart: (id: string) => void;
+  addProductToCart: (id: string, quantity: number) => void;
+  removeProductFromCart: (id: string) => void;
 }
 
 export const CartContext = createContext({} as CartContextType);
@@ -30,11 +30,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(clearCartAction());
   };
 
-  const addBeverageToCart = (id: string) => {
-    dispatch(addNewProductAction(id));
+  const addProductToCart = (id: string, quantity: number) => {
+    dispatch(addNewProductAction(id, quantity));
   };
 
-  const removeBeverageFromCart = (id: string) => {
+  const removeProductFromCart = (id: string) => {
     dispatch(removeProductAction(id));
   };
 
@@ -43,8 +43,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         productsList,
         clearCart,
-        addBeverageToCart,
-        removeBeverageFromCart,
+        addProductToCart,
+        removeProductFromCart,
       }}
     >
       {children}

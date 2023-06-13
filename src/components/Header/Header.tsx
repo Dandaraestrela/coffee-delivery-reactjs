@@ -1,13 +1,17 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 
 import { MapPin, ShoppingCartSimple } from "@phosphor-icons/react";
 
 import * as S from "./Header.styles";
 
-import { ReactComponent as Logo } from "@/assets/Logo.svg";
 import { theme } from "@/styles/theme";
 
+import { ReactComponent as Logo } from "@/assets/Logo.svg";
+import { routesURLs } from "@/Router";
+
 export function Header() {
+  const navigate = useNavigate();
   const [location, setLocation] = useState("Carregando...");
 
   const formatLocation = useCallback(
@@ -22,7 +26,6 @@ export function Header() {
         )
           .then((response) => response.json())
           .then((data) => data);
-        console.log(response);
         setLocation(`${response.city}, ${response.principalSubdivisionCode}`);
       } catch (err) {
         return "";
@@ -49,19 +52,23 @@ export function Header() {
 
   return (
     <S.Wrapper>
-      <Logo />
+      <Link to={routesURLs.home}>
+        <Logo />
+      </Link>
       <S.ActionsWrapper>
         <S.Location>
           <MapPin size={22} color={theme.colors.purple} weight="fill" />
           {location}
         </S.Location>
-        <S.Cart>
-          <ShoppingCartSimple
-            size={22}
-            color={theme.colors.yellowDark}
-            weight="fill"
-          />
-        </S.Cart>
+        <Link to={routesURLs.checkout}>
+          <S.Cart>
+            <ShoppingCartSimple
+              size={22}
+              color={theme.colors.yellowDark}
+              weight="fill"
+            />
+          </S.Cart>
+        </Link>
       </S.ActionsWrapper>
     </S.Wrapper>
   );
