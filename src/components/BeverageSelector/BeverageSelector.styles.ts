@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   position: relative;
 
   width: 100%;
-  height: 300px;
+  height: 320px;
 
   gap: 16px;
   padding: 110px 20px 20px 20px;
@@ -107,6 +107,7 @@ export const Tag = styled.div`
 
 export const FooterWrapper = styled.div`
   display: flex;
+  margin-top: auto;
   gap: 24px;
 `;
 

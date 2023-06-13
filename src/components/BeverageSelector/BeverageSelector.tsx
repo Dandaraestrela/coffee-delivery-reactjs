@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as S from "./BeverageSelector.styles";
 import { theme } from "@/styles/theme";
 import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
+import { CartContext } from "@/contexts/CartContext";
 
 interface BeverageProps {
   id: string;
@@ -20,6 +21,7 @@ export function BeverageSelector({
   description,
   price,
 }: BeverageProps) {
+  const { addProductToCart, productsList } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
   const removeBeverage = () => {
@@ -28,6 +30,10 @@ export function BeverageSelector({
 
   const addBeverage = () => {
     setQuantity((prev) => prev + 1);
+  };
+
+  const onAddToCart = () => {
+    addProductToCart(id, quantity);
   };
 
   return (
@@ -54,7 +60,7 @@ export function BeverageSelector({
               <Plus size={14} color={theme.colors.purple} weight="bold" />
             </S.QuantityButton>
           </S.QuantitySelector>
-          <S.CartButton>
+          <S.CartButton onClick={onAddToCart}>
             <ShoppingCartSimple
               size={20}
               color={theme.colors.white}
