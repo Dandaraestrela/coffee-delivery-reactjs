@@ -2,15 +2,23 @@ import {
   addNewProductAction,
   clearCartAction,
   removeProductAction,
+  updateProductQuantityAction,
 } from "@/reducers/cart/actions";
 import { ProductType, cartReducer } from "@/reducers/cart/reducers";
-import { ReactNode, createContext, useReducer, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 
 interface CartContextType {
   productsList: ProductType[];
   clearCart: () => void;
   addProductToCart: (id: string, quantity: number) => void;
   removeProductFromCart: (id: string) => void;
+  updateProductQuantity: (id: string, quantity: number) => void;
 }
 
 export const CartContext = createContext({} as CartContextType);
@@ -25,7 +33,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   });
 
   const { productsList } = cartState;
-
+  console.log(productsList);
   const clearCart = () => {
     dispatch(clearCartAction());
   };
@@ -38,6 +46,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(removeProductAction(id));
   };
 
+  const updateProductQuantity = (id: string, quantity: number) => {
+    dispatch(updateProductQuantityAction(id, quantity));
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -45,9 +57,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         clearCart,
         addProductToCart,
         removeProductFromCart,
+        updateProductQuantity,
       }}
     >
       {children}
     </CartContext.Provider>
   );
 }
+
+export const useCartContext = () => useContext(CartContext);

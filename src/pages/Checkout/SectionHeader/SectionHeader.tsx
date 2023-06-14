@@ -9,10 +9,11 @@ interface SectionHeaderProps {
 export function SectionHeader({ title, subtitle, icon }: SectionHeaderProps) {
   return (
     <S.Wrapper>
-      <S.UpperSection>
-        {icon}
-        {title}
-      </S.UpperSection>
+      {icon}
+      <S.TextSection>
+        <S.Title>{title}</S.Title>
+        <S.Subtitle>{subtitle}</S.Subtitle>
+      </S.TextSection>
     </S.Wrapper>
   );
 }
