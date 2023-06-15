@@ -59,7 +59,7 @@ export function BeverageSelector({
           />
           <S.CartButton onClick={onAddToCart}>
             <ShoppingCartSimple
-              size={20}
+              size={18}
               color={theme.colors.white}
               weight="fill"
             />

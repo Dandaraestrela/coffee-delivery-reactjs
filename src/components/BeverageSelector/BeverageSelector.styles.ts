@@ -42,6 +42,7 @@ export const Subtitle = styled.h2`
 
 export const ActionsWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -49,8 +50,7 @@ export const CartButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 38px;
-  padding: 8px;
+  padding: 7px 8px;
 
   background: ${({ theme: { colors } }) => colors.purpleDark};
   border-radius: 6px;
