@@ -22,7 +22,7 @@ export const beverages = [
     name: "Americano",
     tags: ["Tradicional"],
     description: "O tradicional café feito com água quente e grãos moídos",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "1",
@@ -30,7 +30,7 @@ export const beverages = [
     name: "Arabe",
     tags: ["Especial"],
     description: "Bebida preparada com grãos de café árabe e especiarias",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "2",
@@ -38,7 +38,7 @@ export const beverages = [
     name: "Café com Leite",
     tags: ["Tradicional", "Com leite"],
     description: "Meio a meio de expresso tradicional com leite vaporizado",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "3",
@@ -46,7 +46,7 @@ export const beverages = [
     name: "Café Gelado",
     tags: ["Tradicional", "Gelado"],
     description: "Bebida preparada com café expresso e cubos de gelo",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "4",
@@ -55,7 +55,7 @@ export const beverages = [
     tags: ["Tradicional", "Com leite"],
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "5",
@@ -63,7 +63,7 @@ export const beverages = [
     name: "Chocolate Quente",
     tags: ["Especial", "Com leite"],
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "6",
@@ -72,7 +72,7 @@ export const beverages = [
     tags: ["Especial", "Alcoolico", "Gelado"],
     description:
       "Drink gelado de café expresso com rum, creme de leite e hortelã",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "7",
@@ -80,7 +80,7 @@ export const beverages = [
     name: "Expresso",
     tags: ["Tradicional"],
     description: "O tradicional café feito com água quente e grãos moídos",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "8",
@@ -88,7 +88,7 @@ export const beverages = [
     name: "Expresso Cremoso",
     tags: ["Tradicional"],
     description: "Café expresso tradicional com espuma cremosa",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "9",
@@ -96,7 +96,7 @@ export const beverages = [
     name: "Havaiano",
     tags: ["Especial"],
     description: "Bebida adocicada preparada com café e leite de coco",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "10",
@@ -104,15 +104,16 @@ export const beverages = [
     name: "Irlandes",
     tags: ["Especial", "Alcoolico"],
     description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "11",
     image: Latte,
     name: "Latte",
     tags: ["Tradicional", "Com leite"],
-    description: "",
-    price: "1,25",
+    description:
+      "Uma dose de café expresso com o dobro de leite e espuma cremosa",
+    price: "1.25",
   },
   {
     id: "12",
@@ -121,7 +122,7 @@ export const beverages = [
     tags: ["Tradicional", "Com leite"],
     description:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-    price: "1,25",
+    price: "1.25",
   },
   {
     id: "13",
@@ -129,6 +130,6 @@ export const beverages = [
     name: "Mocaccino",
     tags: ["Tradicional", "Com leite"],
     description: "Café expresso com calda de chocolate, pouco leite e espuma",
-    price: "1,25",
+    price: "1.25",
   },
 ];
