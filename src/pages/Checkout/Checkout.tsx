@@ -20,10 +20,13 @@ import { SelectableButton } from "./SelectableButton/SelectableButton";
 import { CartContext, useCartContext } from "@/contexts/CartContext";
 import { beverages } from "../Home/Home.utils";
 import { CartProduct } from "./CartProduct/CartProduct";
+import { routesURLs } from "@/Router";
+import { useNavigate } from "react-router-dom";
 
 type PaymentTypes = "credit" | "debt" | "money";
 
 export function Checkout() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -33,10 +36,14 @@ export function Checkout() {
     resolver: yupResolver(schema),
   });
 
-  const { productsList, updateProductQuantity, removeProductFromCart } =
-    useCartContext();
+  const {
+    productsList,
+    updateProductQuantity,
+    removeProductFromCart,
+    clearCart,
+  } = useCartContext();
   const [paymentType, setPaymentType] = useState<PaymentTypes>("credit");
-  console.log(productsList);
+
   const productsWithInfo = useMemo(
     () =>
       productsList?.map((product) => ({
@@ -46,8 +53,22 @@ export function Checkout() {
     [productsList, updateProductQuantity, removeProductFromCart]
   );
 
-  const onSubmit = (data: FormDataType) => console.log(data);
-  console.log(errors);
+  const totalPrice = useMemo(
+    () =>
+      productsWithInfo.reduce(
+        (accumulator, product) =>
+          accumulator +
+          product.quantity * parseFloat(product.productInfo.price),
+        0
+      ),
+    [productsList]
+  );
+
+  const onSubmit = (data: FormDataType) => {
+    clearCart();
+    navigate(routesURLs.checkoutConcluded);
+  };
+
   return (
     <S.FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <S.SectionWrapper>
@@ -113,13 +134,13 @@ export function Checkout() {
             />
           </Row>
         </S.UserInfo>
-        <S.UserInfo>
+        <S.PaymentInfo>
           <SectionHeader
             icon={<CurrencyDollar size={22} color={theme.colors.purple} />}
             title="Pagamento"
             subtitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
           />
-          <Row gap={4} marginTop={12}>
+          <Row gap={4} marginTop={12} turnInColumnWhen={1000}>
             <SelectableButton
               icon={<CreditCard size={20} color={theme.colors.purple} />}
               text="Cartão de crédito"
@@ -139,34 +160,58 @@ export function Checkout() {
               isSelected={paymentType === "money"}
             />
           </Row>
-        </S.UserInfo>
+        </S.PaymentInfo>
       </S.SectionWrapper>
       <S.SectionWrapper>
         <S.Title>Cafés selecionados</S.Title>
         <S.ProductsInfo>
-          {productsWithInfo ? (
-            productsWithInfo.map((product) => (
-              <CartProduct
-                key={product.id}
-                imgSrc={product.productInfo.image}
-                productName={product.productInfo.name}
-                quantity={product.quantity}
-                unitPrice={product.productInfo.price}
-                totalPrice={
-                  product.quantity * parseFloat(product.productInfo.price)
-                }
-                onAdd={() =>
-                  updateProductQuantity(product.id, product.quantity + 1)
-                }
-                onSub={() =>
-                  updateProductQuantity(product.id, product.quantity - 1)
-                }
-                onRemove={() => removeProductFromCart(product.id)}
-              />
-            ))
-          ) : (
-            <h1>você não tem produtos no carrinho!</h1>
-          )}
+          <S.ProductsListWrapper>
+            {productsWithInfo.length ? (
+              productsWithInfo.map((product) => (
+                <Row marginBottom={12}>
+                  <CartProduct
+                    key={product.id}
+                    imgSrc={product.productInfo.image}
+                    productName={product.productInfo.name}
+                    quantity={product.quantity}
+                    unitPrice={product.productInfo.price}
+                    totalPrice={
+                      product.quantity * parseFloat(product.productInfo.price)
+                    }
+                    onAdd={() =>
+                      updateProductQuantity(product.id, product.quantity + 1)
+                    }
+                    onSub={() =>
+                      updateProductQuantity(product.id, product.quantity - 1)
+                    }
+                    onRemove={() => removeProductFromCart(product.id)}
+                  />
+                </Row>
+              ))
+            ) : (
+              <p>Você ainda não tem produtos no carrinho!</p>
+            )}
+          </S.ProductsListWrapper>
+          <S.HorizontalDivisor />
+          <S.TotalInfoWrapper>
+            <S.TotalInfoSmallText>Total de itens</S.TotalInfoSmallText>
+            <S.TotalInfoSmallText>
+              R$ {totalPrice.toFixed(2)}
+            </S.TotalInfoSmallText>
+          </S.TotalInfoWrapper>
+          <S.TotalInfoWrapper>
+            <S.TotalInfoSmallText>Entrega</S.TotalInfoSmallText>
+            <S.TotalInfoSmallText>Grátis</S.TotalInfoSmallText>
+          </S.TotalInfoWrapper>
+          <S.TotalInfoWrapper>
+            <S.TotalInfoLargeText>Total</S.TotalInfoLargeText>
+            <S.TotalInfoLargeText>
+              R$ {totalPrice.toFixed(2)}
+            </S.TotalInfoLargeText>
+          </S.TotalInfoWrapper>
+          <S.ConfirmButton type="submit" disabled={!productsWithInfo.length}>
+            Confirmar pedido
+          </S.ConfirmButton>
         </S.ProductsInfo>
       </S.SectionWrapper>
     </S.FormWrapper>

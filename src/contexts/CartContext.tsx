@@ -33,7 +33,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   });
 
   const { productsList } = cartState;
-  console.log(productsList);
+
   const clearCart = () => {
     dispatch(clearCartAction());
   };
