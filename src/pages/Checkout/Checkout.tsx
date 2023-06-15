@@ -23,7 +23,7 @@ import { CartProduct } from "./CartProduct/CartProduct";
 import { routesURLs } from "@/Router";
 import { useNavigate } from "react-router-dom";
 
-type PaymentTypes = "credit" | "debt" | "money";
+type PaymentTypes = "Cartão de crédito" | "Cartão de débito" | "Dinheiro";
 
 export function Checkout() {
   const navigate = useNavigate();
@@ -42,7 +42,8 @@ export function Checkout() {
     removeProductFromCart,
     clearCart,
   } = useCartContext();
-  const [paymentType, setPaymentType] = useState<PaymentTypes>("credit");
+  const [paymentType, setPaymentType] =
+    useState<PaymentTypes>("Cartão de crédito");
 
   const productsWithInfo = useMemo(
     () =>
@@ -66,7 +67,7 @@ export function Checkout() {
 
   const onSubmit = (data: FormDataType) => {
     clearCart();
-    navigate(routesURLs.checkoutConcluded);
+    navigate(routesURLs.checkoutConcluded, { state: { ...data, paymentType } });
   };
 
   return (
@@ -144,20 +145,20 @@ export function Checkout() {
             <SelectableButton
               icon={<CreditCard size={20} color={theme.colors.purple} />}
               text="Cartão de crédito"
-              onClick={() => setPaymentType("credit")}
-              isSelected={paymentType === "credit"}
+              onClick={() => setPaymentType("Cartão de crédito")}
+              isSelected={paymentType === "Cartão de crédito"}
             />
             <SelectableButton
               icon={<Bank size={20} color={theme.colors.purple} />}
               text="Cartão de débito"
-              onClick={() => setPaymentType("debt")}
-              isSelected={paymentType === "debt"}
+              onClick={() => setPaymentType("Cartão de débito")}
+              isSelected={paymentType === "Cartão de débito"}
             />
             <SelectableButton
               icon={<Money size={20} color={theme.colors.purple} />}
               text="Dinheiro"
-              onClick={() => setPaymentType("money")}
-              isSelected={paymentType === "money"}
+              onClick={() => setPaymentType("Dinheiro")}
+              isSelected={paymentType === "Dinheiro"}
             />
           </Row>
         </S.PaymentInfo>
