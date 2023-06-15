@@ -2,10 +2,6 @@ import styled from "styled-components";
 import Background from "@/assets/Background.png";
 import { MainWrapper } from "@/components/DefaultStyles/Wrappers";
 
-interface TagImageProps {
-  backgroundColor: string;
-}
-
 export const Wrapper = styled(MainWrapper)`
   align-items: center;
   justify-content: center;
@@ -49,26 +45,6 @@ export const TagsWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   row-gap: 16px;
   max-width: 700px;
-`;
-
-export const Tag = styled.div`
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-`;
-
-export const TagImage = styled.div<TagImageProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 8px;
-
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.colors.purple};
-
-  border-radius: 50%;
 `;
 
 export const CoverImage = styled.img`
