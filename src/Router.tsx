@@ -5,9 +5,9 @@ import { Checkout } from "@/pages/Checkout/Checkout";
 import { CheckoutConcluded } from "./pages/CheckoutConcluded/CheckoutConcluded";
 
 export const routesURLs = {
-  home: "/",
-  checkout: "/checkout",
-  checkoutConcluded: "/checkout-concluded",
+  home: "/coffee-delivery-reactjs",
+  checkout: "/coffee-delivery-reactjs/checkout",
+  checkoutConcluded: "/coffee-delivery-reactjs/checkout-concluded",
 };
 
 export function Router() {
