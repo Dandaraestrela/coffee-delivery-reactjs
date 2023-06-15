@@ -1,5 +1,8 @@
+import toast from "react-hot-toast";
 import { useContext, useState } from "react";
+
 import * as S from "./BeverageSelector.styles";
+
 import { theme } from "@/styles/theme";
 import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
 import { CartContext } from "@/contexts/CartContext";
@@ -22,7 +25,7 @@ export function BeverageSelector({
   description,
   price,
 }: BeverageProps) {
-  const { addProductToCart, productsList } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
   const removeBeverage = () => {
@@ -35,6 +38,7 @@ export function BeverageSelector({
 
   const onAddToCart = () => {
     addProductToCart(id, quantity);
+    toast.success("Produto adicionado ao carrinho!");
   };
 
   return (
