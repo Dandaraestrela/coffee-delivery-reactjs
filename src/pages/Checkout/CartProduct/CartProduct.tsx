@@ -28,7 +28,7 @@ export function CartProduct({
     <S.Wrapper>
       <S.ProductImg src={imgSrc} />
       <S.NameAndActionsWrapper>
-        {productName}
+        {productName} <span>Preço unitário: R${unitPrice}</span>
         <S.ActionsWrapper>
           <QuantitySelector onAdd={onAdd} onSub={onSub} quantity={quantity} />
           <S.RemoveButton type="button" onClick={onRemove}>
@@ -37,6 +37,7 @@ export function CartProduct({
           </S.RemoveButton>
         </S.ActionsWrapper>
       </S.NameAndActionsWrapper>
+      <S.TotalPrice>R${totalPrice.toFixed(2)}</S.TotalPrice>
     </S.Wrapper>
   );
 }
