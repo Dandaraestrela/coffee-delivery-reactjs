@@ -16,6 +16,7 @@ export const theme = {
     baseCard: "#F3F2F2",
     background: "#FAFAFA",
     white: "#FFFFFF",
+    danger: "#D00505",
   },
   typography: {
     xsm: "12px",

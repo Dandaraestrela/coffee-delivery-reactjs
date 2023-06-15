@@ -11,7 +11,6 @@ import { ReactComponent as Logo } from "@/assets/Logo.svg";
 import { routesURLs } from "@/Router";
 
 export function Header() {
-  const navigate = useNavigate();
   const [location, setLocation] = useState("Carregando...");
 
   const formatLocation = useCallback(

@@ -3,6 +3,7 @@ import * as S from "./BeverageSelector.styles";
 import { theme } from "@/styles/theme";
 import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
 import { CartContext } from "@/contexts/CartContext";
+import { QuantitySelector } from "../QuantitySelector/QuantitySelector";
 
 interface BeverageProps {
   id: string;
@@ -51,18 +52,14 @@ export function BeverageSelector({
           R$<span>{price}</span>
         </S.PriceText>
         <S.ActionsWrapper>
-          <S.QuantitySelector>
-            <S.QuantityButton onClick={() => removeBeverage()}>
-              <Minus size={14} color={theme.colors.purple} weight="bold" />
-            </S.QuantityButton>
-            {quantity}
-            <S.QuantityButton onClick={() => addBeverage()}>
-              <Plus size={14} color={theme.colors.purple} weight="bold" />
-            </S.QuantityButton>
-          </S.QuantitySelector>
+          <QuantitySelector
+            quantity={quantity}
+            onAdd={addBeverage}
+            onSub={removeBeverage}
+          />
           <S.CartButton onClick={onAddToCart}>
             <ShoppingCartSimple
-              size={20}
+              size={18}
               color={theme.colors.white}
               weight="fill"
             />

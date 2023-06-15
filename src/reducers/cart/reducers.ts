@@ -54,6 +54,7 @@ export function cartReducer(state: CartState, action: ActionType) {
         ),
       };
     case ActionTypes.UPDATE_PRODUCT_QUANTITY: {
+      if (action.payload.quantity <= 0) return state;
       const productIndex = state.productsList.findIndex(
         (product) => product.id === action.payload.productId
       );
@@ -61,7 +62,7 @@ export function cartReducer(state: CartState, action: ActionType) {
         id: action.payload.productId,
         quantity: action.payload.quantity,
       };
-      return state;
+      return { ...state };
     }
     case ActionTypes.CLEAR_CART:
       return { productsList: [] };
