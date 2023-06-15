@@ -9,6 +9,7 @@ import * as S from "./Banner.styles";
 
 import PrincipalCoffee from "@/assets/PrincipalCoffee.png";
 import { theme } from "@/styles/theme";
+import { Tag, TagImage } from "@/components/DefaultStyles/Tag";
 
 const tags = [
   {
@@ -50,10 +51,10 @@ export function Banner() {
         </S.Subtitle>
         <S.TagsWrapper>
           {tags.map((tag) => (
-            <S.Tag key={tag.id}>
-              <S.TagImage backgroundColor={tag.color}>{tag.icon}</S.TagImage>
+            <Tag key={tag.id}>
+              <TagImage backgroundColor={tag.color}>{tag.icon}</TagImage>
               {tag.text}
-            </S.Tag>
+            </Tag>
           ))}
         </S.TagsWrapper>
       </S.Content>
