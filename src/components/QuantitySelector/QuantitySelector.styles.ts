@@ -5,7 +5,7 @@ export const QuantitySelector = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 38px;
+  height: fit-content;
 
   padding: 8px;
   gap: 6px;
@@ -15,6 +15,7 @@ export const QuantitySelector = styled.div`
   border-radius: 6px;
 
   font-size: 16px;
+  line-height: 16px;
   color: ${({ theme: { colors } }) => colors.baseTitle};
 `;
 
